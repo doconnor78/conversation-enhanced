@@ -48,7 +48,7 @@ import {PayloadComponent} from './payload';
           <div *ngIf='segment.isUser() && segment == segments[segments.length - 1]' class='load'></div>
         </div>
       </div>
-      <div class='right'> <!-- Display the payload to/from Watson -->
+      <div class='right no-show'> <!-- Display the payload to/from Watson -->
         <div id='payload-column' class='fixed-column content-column'>
           <payload id='payload-request' class='payload' label='Sent to Watson' [style]='segments.length <= 2 ?
             "display : none;" : ""' [payload]='(segments.length > 1 && segments[segments.length - 2].isUser()) ?
@@ -243,6 +243,7 @@ export class AppComponent {
  * This method is responsible for changing the layout of payload section based on screen resolution.
  */
   private resizePayloadColumn (rightColumn) {
+    /*
     if (window.innerWidth < 730) {
       rightColumn.classList.add ('no-show');
     } else if (window.innerWidth < 830) {
@@ -258,6 +259,7 @@ export class AppComponent {
       rightColumn.classList.remove ('no-show');
       rightColumn.style.width = '445px';
     }
+    */
   }
 /*
  * This method is responsible for toggling the payload section to full screen or fixed layout by
@@ -276,6 +278,7 @@ export class AppComponent {
     if (toggleButton.classList.contains ('full')) {
       toggleButton.classList.remove ('full');
       payloadColumn.classList.remove ('full');
+      rightColumn.classList.add ('no-show');
       this.resizePayloadColumn (rightColumn);
     } else {
       rightColumn.classList.remove ('no-show');
